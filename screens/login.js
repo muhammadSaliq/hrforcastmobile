@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Text, Dimensions, ActivityIndicator } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Text, Dimensions, ActivityIndicator, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginPage = () => {
@@ -9,6 +9,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleLogin = () => {
     // Email regex pattern
@@ -34,27 +35,38 @@ const LoginPage = () => {
   const LoginForm = async () => {
     console.log("em",email)
     console.log("ppass",password)
+
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
     if (!email || !password) {
       console.log('Value is not Given');
+      alert("please enter your email and password")
       return
     }
     // https://glorious-hat-bat.cyclic.app      // old url
-    else {
+    if (email && password) {
      // setLoading(true);
+     setLoading(true);
       try {
-        let response = await axios.post(`http://192.168.100.7:8081/login`, {
+        let response = await axios.post(`http://192.168.100.7:8000/login`, {
           email: email,
           password: password
         }, {
           withCredentials: true
         })
+        //Alert.alert("asaa",JSON.stringify(response))
         if (response.status == 200) {
           console.log("login successful", response.status);
           alert("successfully loggedIn")
           navigation.navigate('Dashboard');
+          setLoading(false);
         }
         else {
-          console.log("login failed",response.status)
+          setLoading(false);
+          console.log("login faileds",response.status)
+
         }
 //        setSuccessMessage('You have successfully logged in');
   //      setShowSuccessAlert(true);
@@ -64,14 +76,15 @@ const LoginPage = () => {
          //navigation.navigate('Dashboard');
     
       } catch (error) {
+        setLoading(false);
         console.log(error)
         console.log("login failed")
     //    setErrorMessage('Email or Password is incorrect'); 
       //  setShowErrorAlert(true);
       }
-      finally{
+    //  finally{
    //     setLoading(false);
-      }
+     // }
     }
   };
   return (
@@ -92,6 +105,7 @@ const LoginPage = () => {
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
+            
           />
         </View>
         <View style={styles.fieldContainer}>

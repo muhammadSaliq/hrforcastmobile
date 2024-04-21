@@ -8,6 +8,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Dashboard from './screens/Dashboard';
 import Employee from './screens/Emloyee';
 import EmployeeDetails from './screens/Empployeedetails';
+import Departments from './screens/Departments';
+import Employeemanage from './screens/Employeemanage';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -23,6 +25,8 @@ export default function App() {
 
         <Stack.Screen name="Employees" component={Employee} />
         <Stack.Screen name="Employeedetails" component={EmployeeDetails} />
+        <Stack.Screen name="Departments" component={Departments} />
+        <Stack.Screen name="Employeemanage" component={Employeemanage} />
 
       </Stack.Navigator>
     </NavigationContainer>
