@@ -1,11 +1,12 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icon library
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const Departments = () => {
     const navigation = useNavigation();
-
+    const [alldepartmentss, setalldepartmentss] = useState([]);
   // Sample employee data
   const employees = [
     { name: "Hr Department", jobRole: "shaukat", department: "abc@2gmail.com" },
@@ -13,32 +14,52 @@ const Departments = () => {
     // Add more employee data as needed
   ];
 
+  const getAlldepartments = async () => {
+    try {
+      const response = await axios.get(`http://192.168.100.7:8000/alldepartments`);
+      console.log("response: ", response);
+      console.log(alldepartmentss);
+      setalldepartmentss(response.data.data);
+    } catch (error) {
+      console.log("error in getting all Departments", error);
+    }
+  };
+
   const handleViewEmployee = (employee) => {
     // Handle the action when the "View" button is pressed
     navigation.navigate('Employeemanage');
     console.log("Employeemanage", employee);
   };
+  const handleNavigate = (Department) => {
+    navigation.navigate('Department Employee', { department: Department });
+  };
+    useEffect(() => {
+        console.log('asdasd')
+        getAlldepartments()
 
+    }, [])
   return (
     <SafeAreaView style={styles.container}>
       {/* Heading */}
+      <ScrollView>
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Departments</Text>
       </View>
       {/* Employee Cards */}
       <View style={styles.cardsContainer}>
-        {employees.map((employee, index) => (
+
+        {alldepartmentss.map((employee, index) => (
           <View key={index} style={styles.card}>
             {/* Employee Name */}
-            <Text style={styles.name}>{employee.name}</Text>
+            <Text style={styles.name}>{employee.departmentname}</Text>
             {/* Job Role */}
-            <Text style={styles.jobRole}>Shaukat</Text>
+            <Text style={styles.jobRole}>{employee.departmentmanager}</Text>
             {/* Divider Line */}
             <View style={styles.divider}></View>
             {/* Employee Details */}
-            <Text> {employee.department}</Text>
+            <Text> {employee.contact}</Text>
             
-            <TouchableOpacity style={styles.viewButton} onPress={() => handleViewEmployee(employee)}>
+            <TouchableOpacity style={styles.viewButton} onPress={() => handleNavigate(employee.departmentname)}>
               <Text style={styles.buttonText}>
                 <FontAwesome name="user" size={20} color="black" style={styles.icon} /> View
               </Text>
@@ -46,6 +67,7 @@ const Departments = () => {
           </View>
         ))}
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

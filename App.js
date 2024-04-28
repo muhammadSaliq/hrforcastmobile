@@ -10,6 +10,7 @@ import Employee from './screens/Emloyee';
 import EmployeeDetails from './screens/Empployeedetails';
 import Departments from './screens/Departments';
 import Employeemanage from './screens/Employeemanage';
+import Departmentemployee from './screens/Departmentemloyee';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen name="Employeedetails" component={EmployeeDetails} />
         <Stack.Screen name="Departments" component={Departments} />
         <Stack.Screen name="Employeemanage" component={Employeemanage} />
+        <Stack.Screen name="Department Employee" component={Departmentemployee} />
 
       </Stack.Navigator>
     </NavigationContainer>

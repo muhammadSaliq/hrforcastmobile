@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icon library
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import axios from 'axios';
 
-const Employee = () => {
+const Departmentemployee = () => {
     const navigation = useNavigation();
+    const route = useRoute();
+    const { department } = route.params;
     const [allemployees, setallemployees] = useState([]);
     const [employeeBoolean, setemployeeBoolean] = useState(false);
 
@@ -18,7 +20,7 @@ const Employee = () => {
 
   const getAllemployee = async () => {
     try {
-      const response = await axios.get(`http://192.168.100.7:8000/allemployees`);
+      const response = await axios.get(`http://192.168.100.7:8000/deaprtmentemployee/${department}`);
       console.log("response: ", response);
       console.log(allemployees);
       setallemployees(response.data.data);
@@ -146,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Employee;
+export default Departmentemployee;
