@@ -1,10 +1,41 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
 import Header from '../components/Header'; // Assuming Header.js is in the same directory as EmployeeDetails.js
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation , useRoute} from '@react-navigation/native';
+import axios from 'axios';
 const Employeemanage = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { id } = route.params;
+  const [employeeBoolean, setemployeeBoolean] = useState(false);
+  const [Delete , setdelete] = useState(false);
+  const [allemployees, setallemployees] = useState([]);
+  const [singeemloyee  , setsingeemloyee] = useState("");
+  
+    const fetchSingleCustomer = async() => {
+      const response = await axios.get(`http://192.168.100.7:8000/geteditemployee/${id}`);
+      console.log("response: ", response);
+    console.log(singeemloyee);
+    setsingeemloyee(response.data.Product);
+          }
+  
+    const handlecchange = (ev) => {
+      const {value, name} = ev.target;
+      setsingeemloyee(()=> {
+          return {
+              ...singeemloyee, [name]: value
+          }
+      })
 
+
+  };
+
+
+    useEffect(() => {
+        console.log('asdasd')
+fetchSingleCustomer()
+        
+    }, [Delete , employeeBoolean ])
   // Sample employee data (dummy data)
   const employeeData = {
     "General Information": {

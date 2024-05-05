@@ -100,7 +100,33 @@ const EmployeeDetails = () => {
         
       </View>
 
+      <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>Leaves Information</Text>
+        <View style={styles.fieldContainer}>
+            <Text style={styles.fieldName}>Vacation Leaves</Text>
+            <Text style={styles.fieldValue}>{allemployees.personalleave}</Text>
+          </View>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.fieldName}>Sick Leave</Text>
+            <Text style={styles.fieldValue}>{allemployees.sickleave}</Text>
+          </View>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.fieldName}>Personal Leave</Text>
+            <Text style={styles.fieldValue}>{allemployees.personalleave}</Text>
+          </View>
+        </View>
+        <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>Arrival Information</Text>
+        <View style={styles.fieldContainer}>
+            <Text style={styles.fieldName}>Late Arrivals</Text>
+            <Text style={styles.fieldValue}>{allemployees.latearrivals}</Text>
+          </View>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.fieldName}>OverTime</Text>
+            <Text style={styles.fieldValue}>{allemployees.lateleaving}</Text>
+          </View>
 
+        </View>
 
 
       {/* Additional Information */}
