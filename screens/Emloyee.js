@@ -279,14 +279,14 @@ setresultattr(response.data.result) //result is save
                                     <FontAwesome name="user" size={20} color="black" style={styles.icon} /> View
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.viewButton}
+                       {/*}     <TouchableOpacity style={styles.viewButton}
                             onPressIn={()=> {setAge(value.Age); setBusinessTravel(value.BusinessTravel); setDailyRate(value.DailyRate); setDepartment(value.Department); setDistanceFromHome(value.DistanceFromHome); setEducation(value.Education); setEducationField(value.EducationField); setEmployeeCount(value.EmployeeCount); setEmployeeNumber(value.EmployeeNumber); setEnvironmentSatisfaction(value.EnvironmentSatisfaction); setGender(value.Gender); setHourlyRate(value.HourlyRate); setJobInvolvement(value.JobInvolvement); setJobLevel(value.JobLevel); setJobRole(value.JobRole); setJobSatisfaction(value.JobSatisfaction); setMaritalStatus(value.MaritalStatus); setMonthlyIncome(value.MonthlyIncome); setMonthlyRate(value.MonthlyRate); setNumCompaniesWorked(value.NumCompaniesWorked); setOver18(value.Over18); setOverTime(value.OverTime); setPercentSalaryHike(value.PercentSalaryHike); setPerformanceRating(value.PerformanceRating); setRelationshipSatisfaction(value.RelationshipSatisfaction); setStandardHours(value.StandardHours); setStockOptionLevel(value.StockOptionLevel); setTotalWorkingYears(value.TotalWorkingYears); setTrainingTimesLastYear(value.TrainingTimesLastYear); setWorkLifeBalance(value.WorkLifeBalance); setYearsAtCompany(value.YearsAtCompany); setYearsInCurrentRole(value.YearsInCurrentRole); setYearsSinceLastPromotion(value.YearsSinceLastPromotion); setYearsWithCurrManager(value.YearsWithCurrManager); }}
                             onPress={() => attritionemloyee()}
                             >
                                 <Text style={styles.buttonText}>
                                     <FontAwesome name="user" size={20} color="black" style={styles.icon} /> Predict
                                 </Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
                     ))}
                 </View>
